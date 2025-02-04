@@ -1,95 +1,120 @@
-# Object-Oriented Programming Inheritance Project
+# UserProfileManager 🚀
 
 ## Overview
 
-This project demonstrates advanced object-oriented programming (OOP) concepts in Python, including:
-- Class inheritance
-- Method overriding
-- Multiple inheritance
-- Delegation
-- Usage of `__slots__`
+UserProfileManager is a robust Python library for managing user profiles with advanced validation, caching, and memory-efficient reference handling. It provides a flexible system for creating, storing, and managing user profiles with strong data integrity checks.
 
-The project creates a simple system of people (Person, Student, Professor, Employee) with various attributes and behaviors.
+## 🌟 Key Features
 
-## Features
+- **Robust Validation**
+  - Custom descriptor-based property validation
+  - Strict email and username format checks
+  - Immutable validation rules
 
-- Base `Person` class with core personal details
-- Specialized classes:
-  - `Student`: Extends Person with grade information
-  - `Professor`: Extends Person with teaching courses
-  - `Employee`: Extends Person with department details
-- `StudentProfessor`: Demonstrates multiple inheritance
-- `Location` class using `__slots__` for efficient memory management
+- **Smart Caching**
+  - Weak reference-based caching mechanism
+  - Automatic memory management
+  - Efficient profile retrieval
 
-## Requirements
+- **Flexible Profile Management**
+  - Configurable default login timestamp
+  - Nullable last login support
+  - Easy profile creation and manipulation
 
-- Python 3.10+
-- pytest (for running tests)
+## 🛠 Installation
 
-## Project Structure
-
-```
-project_root/
-│
-├── your_module.py        # Main implementation of classes
-├── test_module.py        # Pytest test cases
-└── .github/workflows/
-    └── python-app.yml   # GitHub Actions configuration
-```
-
-## Setup and Installation
-
-1. Clone the repository
-2. Create a virtual environment (optional but recommended)
-3. Install dependencies:
-   ```bash
-   pip install pytest
-   ```
-
-## Running Tests
-
-To run the test suite:
 ```bash
-pytest
+# Clone the repository
+git clone https://github.com/yourusername/user-profile-manager.git
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-## Continuous Integration
+## 💡 Usage Examples
 
-GitHub Actions is configured to automatically run tests on:
-- Pushes to the main branch
-- Pull requests targeting the main branch
+### Creating a User Profile
 
-## Learning Objectives
+```python
+from user_profile_manager import UserProfile, UserProfileManager
+from datetime import datetime
 
-This project helps demonstrate:
-- Inheritance principles
-- Method overriding
-- Multiple inheritance strategies
-- Python class design patterns
-- Advanced OOP techniques
+# Initialize Profile Manager
+manager = UserProfileManager()
 
-## Contributing
+# Create a new profile
+profile = manager.create_profile(
+    username="johndoe", 
+    email="john.doe@example.com",
+    last_login=datetime.now()
+)
+```
+
+### Retrieving and Updating Profiles
+
+```python
+# Retrieve a profile
+retrieved_profile = manager.get_profile("johndoe")
+
+# Update email (with built-in validation)
+retrieved_profile.email = "new.email@example.com"
+```
+
+## 🧪 Validation Rules
+
+### Username Validation
+- Must be a non-empty string
+- Cannot contain only whitespace
+- Supports alphanumeric characters, hyphens, and underscores
+
+### Email Validation
+- Must contain exactly one "@" symbol
+- Local part and domain must follow strict formatting rules
+- No consecutive dots
+- No spaces allowed
+- Domain must have at least two parts
+
+## 🔍 Technical Details
+
+### ValidatedProperty Descriptor
+- Provides runtime validation for class attributes
+- Uses custom validation functions
+- Automatically binds property names
+
+### Caching Strategy
+- Uses `weakref.WeakValueDictionary` for efficient memory management
+- Automatically removes unused profiles
+- Prevents memory leaks
+
+## 🚦 Testing
+
+Run comprehensive test suite:
+
+```bash
+pytest tests.py
+```
+
+### Test Coverage
+- Username validation
+- Email format checks
+- Last login handling
+- Profile creation and management
+- Weak reference and caching behavior
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+## 📄 License
 
-[Choose an appropriate license for your project]
+Distributed under the MIT License. See `LICENSE` for more information.
 
-## Author
+## 💌 Contact
 
-[Your Name]
-```
+Your Name - your.email@example.com
 
-## Key Concepts Demonstrated
-
-- Base class creation
-- Inheritance hierarchies
-- Method extension and overriding
-- Multiple inheritance
-- Use of `super()` for method delegation
-- Memory-efficient class design with `__slots__`
+Project Link: [https://github.com/yourusername/user-profile-manager](https://github.com/yourusername/user-profile-manager)
